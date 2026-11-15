@@ -244,8 +244,8 @@ export const content: Record<Locale, Content> = {
           description:
             "A personal side project — one workspace for every product's documentation. Tracks what's written, what's missing, and who's behind it across every product a team ships, with per-product knowledge bases, content-status tracking, and team role management.",
           stack: ["Next.js", "Spring Boot", "PostgreSQL", "TypeScript", "Tailwind CSS"],
-          demoUrl: "https://coocon.me/login",
-          websiteUrl: "https://coocon.me",
+          demoUrl: "https://coc-doc-plaform-ui.vercel.app/login",
+          websiteUrl: "https://coc-doc-plaform-ui.vercel.app",
           githubUrl: null,
         },
       ],
@@ -258,7 +258,7 @@ export const content: Record<Locale, Content> = {
       description:
         "Coc Docs Platform is a side project I'm building — it tracks what's written, what's missing, and who's behind it, across every product a team ships. Each product gets its own knowledge base with per-item content status, quick editing, and team role management.",
       primaryCta: "View live workspace",
-      secondaryCta: "Visit coocon.me",
+      secondaryCta: "Visit website",
     },
     experience: {
       eyebrow: "experience",
@@ -466,8 +466,8 @@ export const content: Record<Locale, Content> = {
           description:
             "គម្រោងផ្ទាល់ខ្លួន — កន្លែងធ្វើការតែមួយសម្រាប់ឯកសារផលិតផលទាំងអស់។ តាមដានអ្វីដែលបានសរសេរ អ្វីដែលខ្វះ និងអ្នកទទួលខុសត្រូវ លើផលិតផលនីមួយៗ ដោយមានមូលដ្ឋានចំណេះដឹងសម្រាប់ផលិតផលនីមួយៗ ការតាមដានស្ថានភាពមាតិកា និងការគ្រប់គ្រងតួនាទីក្រុម។",
           stack: ["Next.js", "Spring Boot", "PostgreSQL", "TypeScript", "Tailwind CSS"],
-          demoUrl: "https://coocon.me/login",
-          websiteUrl: "https://coocon.me",
+          demoUrl: "https://coc-doc-plaform-ui.vercel.app/login",
+          websiteUrl: "https://coc-doc-plaform-ui.vercel.app",
           githubUrl: null,
         },
       ],
@@ -480,7 +480,7 @@ export const content: Record<Locale, Content> = {
       description:
         "Coc Docs Platform ជាគម្រោងផ្ទាល់ខ្លួនដែលខ្ញុំកំពុងបង្កើត — វាតាមដានអ្វីដែលបានសរសេរ អ្វីដែលខ្វះ និងអ្នកទទួលខុសត្រូវ លើផលិតផលនីមួយៗ ដែលក្រុមមួយកំពុងដាក់ឱ្យដំណើរការ។ ផលិតផលនីមួយៗមានមូលដ្ឋានចំណេះដឹងផ្ទាល់ខ្លួន ជាមួយនឹងការតាមដានស្ថានភាពមាតិកា ការកែសម្រួលរហ័ស និងការគ្រប់គ្រងតួនាទីក្រុម។",
       primaryCta: "មើលកន្លែងធ្វើការផ្ទាល់",
-      secondaryCta: "ចូលមើល coocon.me",
+      secondaryCta: "ចូលមើលគេហទំព័រ",
     },
     experience: {
       eyebrow: "បទពិសោធន៍",

@@ -9,8 +9,8 @@ export const site = {
 // Personal side-project spotlight, shown below Featured Projects.
 export const spotlight = {
   name: "Coc Docs Platform (CDP)",
-  siteUrl: "https://coocon.me",
-  liveUrl: "https://coocon.me/login",
+  siteUrl: "https://coc-doc-plaform-ui.vercel.app",
+  liveUrl: "https://coc-doc-plaform-ui.vercel.app/login",
   image: "/image/cdp-preview.png",
 };
 
