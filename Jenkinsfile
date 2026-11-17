@@ -107,16 +107,19 @@ pipeline {
             // Deploys as a Docker Swarm service (devops/stack.yml) instead of a
             // plain container. `docker swarm init` is a one-time no-op after the
             // first run; this host is a single-node swarm (its own manager).
+            //
+            // devops/stack.yml interpolates ${RESEND_API_KEY} from this shell's
+            // environment at deploy time (same mechanism docker-compose.yml already
+            // uses for SONAR_DB_PASSWORD) and bakes it into the service spec, so the
+            // "Secret text" credential below (ID: resend-api-key) must exist in
+            // Jenkins for this stage to run — see devops/README.md#6-contact-form.
             steps {
-                sh '''
-                    docker swarm init >/dev/null 2>&1 || true
-                    IMAGE_TAG="$IMAGE_TAG" docker stack deploy -c devops/stack.yml "$APP_NAME"
-                '''
-                // To enable the contact form, add a "Secret text" credential with ID
-                // resend-api-key, then pass it through as an environment entry in
-                // devops/stack.yml (Swarm secrets are a cleaner fit than a shell var
-                // here, since `docker stack deploy` doesn't forward process env to
-                // the running service).
+                withCredentials([string(credentialsId: 'resend-api-key', variable: 'RESEND_API_KEY')]) {
+                    sh '''
+                        docker swarm init >/dev/null 2>&1 || true
+                        IMAGE_TAG="$IMAGE_TAG" RESEND_API_KEY="$RESEND_API_KEY" docker stack deploy -c devops/stack.yml "$APP_NAME"
+                    '''
+                }
             }
         }
 

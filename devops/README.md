@@ -117,12 +117,38 @@ it's green:
 - `docker node ls` — this host as the swarm manager
 - `docker service ls` — the running `portfolio_portfolio` service
 
-## 6. Contact form (optional)
+## 6. Contact form
 
-Add a *Secret text* credential with ID `resend-api-key`, then follow the
-comment in the Jenkinsfile's *Deploy to Swarm* stage to pass it into
-`devops/stack.yml` as an environment entry (Swarm services don't inherit the
-build's shell environment the way a plain `docker run` would).
+The contact form (`/api/contact`) sends mail via [Resend](https://resend.com)
+and needs `RESEND_API_KEY` at runtime. The recipient is fixed to
+`oudompanha456@gmail.com` in `app/api/contact/route.ts`; Resend's shared
+`onboarding@resend.dev` sender works out of the box for that address without
+verifying a domain, since sandbox mode only restricts the *recipient*, not
+the sender.
+
+1. [resend.com](https://resend.com) → sign up (free tier is enough) →
+   *API Keys* → *Create API Key* → copy it.
+2. In Jenkins: *Manage Jenkins* → *Credentials* → *System* → *Global* →
+   *Add Credentials*
+   - Kind: `Secret text` · Secret: the Resend API key · ID: `resend-api-key`
+3. Build the pipeline. The *Deploy to Swarm* stage injects it into
+   `devops/stack.yml`'s `RESEND_API_KEY` environment entry at deploy time
+   (the same `${VAR}` interpolation `docker-compose.yml` already uses for
+   `SONAR_DB_PASSWORD`) — no code change needed. If the credential is
+   missing, the stage fails fast with `RESEND_API_KEY is not set`.
+
+Deploying by hand instead of through Jenkins (no Jenkinsfile involved):
+
+```bash
+docker swarm init 2>/dev/null || true
+RESEND_API_KEY=re_xxxxxxxx IMAGE_TAG=latest docker stack deploy -c devops/stack.yml portfolio
+```
+
+Rotate the key later with the same command — Swarm does a rolling restart
+(`update_config.order: start-first` in `stack.yml`) so the site stays up.
+
+Testing locally with `npm run dev` instead: copy `.env.example` to
+`.env.local` in the repo root and fill in the same key.
 
 ## Troubleshooting
 

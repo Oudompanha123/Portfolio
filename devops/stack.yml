@@ -5,6 +5,8 @@ services:
     image: portfolio:${IMAGE_TAG:-latest}
     ports:
       - "3100:3000"
+    environment:
+      RESEND_API_KEY: ${RESEND_API_KEY:?RESEND_API_KEY is not set - see devops/README.md#6-contact-form}
     deploy:
       replicas: 1
       restart_policy:
